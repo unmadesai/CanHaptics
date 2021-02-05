@@ -63,14 +63,14 @@ PVector           fEE                                = new PVector(0, 0);
 
 /* World boundaries in centimeters */
 FWorld            world;
-float             worldWidth                          = 30.0;  
-float             worldHeight                         = 18.0; 
+float             worldWidth                          = 30.0f;  
+float             worldHeight                         = 18.0f; 
 
-float             edgeTopLeftX                        = 0.0; 
-float             edgeTopLeftY                        = 0.0; 
+float             edgeTopLeftX                        = 0.0f; 
+float             edgeTopLeftY                        = 0.0f; 
 float             edgeBottomRightX                    = worldWidth; 
 float             edgeBottomRightY                    = worldHeight;
-float             edgeBottomLeftX                    = 0.0; 
+float             edgeBottomLeftX                    = 0.0f; 
 float             edgeBottomLeftY                    = worldHeight;
 
 /* Initialization of wall */
@@ -152,6 +152,7 @@ PImage            haplyAvatar;
 
 
 
+
 /* setup section *******************************************************************************************************/
 void setup(){
   /* put setup code here, run once: */
@@ -160,8 +161,8 @@ void setup(){
   size(1200, 720);
   
   /* device setup */
-  /* set font type and size */
-  f                   = createFont("Cambria", 20, true);
+    f                   = createFont("Cambria", 20, true);
+
   /**  
    * The board declaration needs to be changed depending on which USB serial port the Haply board is connected.
    * In the base example, a connection is setup to the first detected serial device, this parameter can be changed
@@ -193,446 +194,484 @@ void setup(){
   world               = new FWorld();
   
   
-  /* creation of wall 
-  wall                   = new FBox(10.0, 0.5);
-  wall.setPosition(edgeTopLeftX+worldWidth/2.0, edgeTopLeftY+2*worldHeight/3.0);
-  wall.setStatic(true);
-  wall.setFill(0, 0, 0);
-  world.add(wall); */
-
- /* Set maze barriers */
-  b1                  = new FBox(1.5, 2.0);
-  b1.setPosition(edgeTopLeftX+worldWidth/4.0-5, edgeTopLeftY+worldHeight/2-4); 
+ /* Create obstacles */
+  b1                  = new FBox(1.5f, 2.0f);
+  b1.setPosition(edgeTopLeftX+worldWidth/4.0f-5, edgeTopLeftY+worldHeight/2-4); 
   b1.setStatic(true);
-  b1.setFill(255,0,102);
+  b1.setFill(92, 92, 138);
+  b1.setNoStroke();
   world.add(b1);
   
-  b2                  = new FBox(1.5, 2.0);
-  b2.setPosition(edgeTopLeftX+worldWidth/4.0-5, edgeTopLeftY+worldHeight/2-2); 
+  b2                  = new FBox(1.5f, 2.0f);
+  b2.setPosition(edgeTopLeftX+worldWidth/4.0f-5, edgeTopLeftY+worldHeight/2-2); 
   b2.setStatic(true);
-  b2.setFill(255,153,153);
+  b2.setFill(133, 133, 173);
+  b2.setNoStroke();
   world.add(b2);
   
-  b3                  = new FBox(1.5, 2.0);
-  b3.setPosition(edgeTopLeftX+worldWidth/4.0-5, edgeTopLeftY+worldHeight/2); 
+  b3                  = new FBox(1.5f, 2.0f);
+  b3.setPosition(edgeTopLeftX+worldWidth/4.0f-5, edgeTopLeftY+worldHeight/2); 
   b3.setStatic(true);
-  b3.setFill(204,0,82);
+  b3.setFill(51, 51, 77);
+  b3.setNoStroke();
   world.add(b3);
   
-  b4                  = new FBox(1.5, 2.0);
-  b4.setPosition(edgeTopLeftX+worldWidth/4.0-5, edgeTopLeftY+worldHeight/2+2); 
+  b4                  = new FBox(1.5f, 2.0f);
+  b4.setPosition(edgeTopLeftX+worldWidth/4.0f-5, edgeTopLeftY+worldHeight/2+2); 
   b4.setStatic(true);
-  b4.setFill(255,204,204);
+  b4.setFill(179, 179, 203);
+  b4.setNoStroke();
   world.add(b4);
 
 
  
   /* creation of Tree 1 */
   tt1                   = new FPoly(); 
-  tt1.vertex(-0.5, 1.0);
-  tt1.vertex( 0.5, 1.0);
+  tt1.vertex(-0.5f, 1.0f);
+  tt1.vertex( 0.5f, 1.0f);
   tt1.vertex( 0, 0);
-  tt1.setPosition(edgeTopLeftX+worldWidth/4.0-2, edgeTopLeftY+worldHeight/2-3); 
+  tt1.setPosition(edgeTopLeftX+worldWidth/4.0f-2, edgeTopLeftY+worldHeight/2-3); 
   tt1.setStatic(true);
   tt1.setFill(0,179,0);
+  tt1.setNoStroke();
   world.add(tt1); 
 
-  t1                  = new FBox(0.4, 0.8);
-  t1.setPosition(edgeTopLeftX+worldWidth/4.0-2, edgeTopLeftY+worldHeight/2-1.6); 
+  t1                  = new FBox(0.4f, 0.8f);
+  t1.setPosition(edgeTopLeftX+worldWidth/4.0f-2, edgeTopLeftY+worldHeight/2-1.6f); 
   t1.setStatic(true);
   t1.setFill(153,102,51);
+  t1.setNoStroke();
   world.add(t1); 
  
  
   /* creation of Tree 2*/
   tt2                   = new FPoly(); 
-  tt2.vertex(-0.5, 1.0);
-  tt2.vertex( 0.5, 1.0);
+  tt2.vertex(-0.5f, 1.0f);
+  tt2.vertex( 0.5f, 1.0f);
   tt2.vertex( 0, 0);
-  tt2.setPosition(edgeTopLeftX+worldWidth/4.0, edgeTopLeftY+worldHeight/2); 
+  tt2.setPosition(edgeTopLeftX+worldWidth/4.0f, edgeTopLeftY+worldHeight/2); 
   tt2.setStatic(true);
   tt2.setFill(0, 204, 102);
+  tt2.setNoStroke();
   world.add(tt2); 
 
-  t2                  = new FBox(0.4, 0.8);
-  t2.setPosition(edgeTopLeftX+worldWidth/4.0, edgeTopLeftY+worldHeight/2+1.4); 
+  t2                  = new FBox(0.4f, 0.8f);
+  t2.setPosition(edgeTopLeftX+worldWidth/4.0f, edgeTopLeftY+worldHeight/2+1.4f); 
   t2.setStatic(true);
   t2.setFill(102,68,0);
+  t2.setNoStroke();
   world.add(t2);  
   
   
     /* creation of Tree 4*/
   tt4                   = new FPoly(); 
-  tt4.vertex(-0.5, 1.0);
-  tt4.vertex( 0.5, 1.0);
+  tt4.vertex(-0.5f, 1.0f);
+  tt4.vertex( 0.5f, 1.0f);
   tt4.vertex( 0, 0);
-  tt4.setPosition(edgeTopLeftX+worldWidth/4.0, edgeTopLeftY+worldHeight/2-6); 
+  tt4.setPosition(edgeTopLeftX+worldWidth/4.0f, edgeTopLeftY+worldHeight/2-6); 
   tt4.setStatic(true);
   tt4.setFill(0, 204, 102);
+  tt4.setNoStroke();
   world.add(tt4); 
 
-  t4                  = new FBox(0.4, 0.8);
-  t4.setPosition(edgeTopLeftX+worldWidth/4.0, edgeTopLeftY+worldHeight/2-4.6); 
+  t4                  = new FBox(0.4f, 0.8f);
+  t4.setPosition(edgeTopLeftX+worldWidth/4.0f, edgeTopLeftY+worldHeight/2-4.6f); 
   t4.setStatic(true);
   t4.setFill(102,68,0);
+  t4.setNoStroke();
   world.add(t4);  
   
   
   
   /* dog */
   d1e1                   = new FPoly(); 
-  d1e1.vertex(-0.5, 1.0);
-  d1e1.vertex( 0.5, 1.0);
+  d1e1.vertex(-0.5f, 1.0f);
+  d1e1.vertex( 0.5f, 1.0f);
   d1e1.vertex( 0, 0);
-  d1e1.setPosition(edgeTopLeftX+worldWidth/4.0, edgeTopLeftY+worldHeight/2+6); 
+  d1e1.setPosition(edgeTopLeftX+worldWidth/4.0f, edgeTopLeftY+worldHeight/2+6); 
   d1e1.setStatic(true);
-  d1e1.setFill(0,179,0);
+  d1e1.setFill(128, 128, 128);
+  d1e1.setNoStroke();
   world.add(d1e1); 
 
   d1                   = new FPoly(); 
-  d1.vertex(-0.4, 1.0);
-  d1.vertex( 0.4, 1.0);
+  d1.vertex(-0.4f, 1.0f);
+  d1.vertex( 0.4f, 1.0f);
   d1.vertex( 0, 0);
-  d1.setPosition(edgeTopLeftX+worldWidth/4.0, edgeTopLeftY+worldHeight/2+5.6); 
+  d1.setPosition(edgeTopLeftX+worldWidth/4.0f, edgeTopLeftY+worldHeight/2+5.6f); 
   d1.setStatic(true);
-  d1.setFill(0,179,0);
+  d1.setFill(140, 140, 140);
+  d1.setNoStroke();
   world.add(d1);
 
-  d1b                  = new FBox(0.6, 0.88);
-  d1b.setPosition(edgeTopLeftX+worldWidth/4.0, edgeTopLeftY+worldHeight/2+7); 
+  d1b                  = new FBox(0.6f, 0.88f);
+  d1b.setPosition(edgeTopLeftX+worldWidth/4.0f, edgeTopLeftY+worldHeight/2+7); 
   d1b.setStatic(true);
-  d1b.setFill(153,102,51);
+  d1b.setFill(89, 89, 89);
+  d1b.setNoStroke();
   world.add(d1b); 
   
-  d1t                  = new FBox(0.2, 0.3);
-  d1t.setPosition(edgeTopLeftX+worldWidth/4.0, edgeTopLeftY+worldHeight/2+7.6); 
+  d1t                  = new FBox(0.2f, 0.3f);
+  d1t.setPosition(edgeTopLeftX+worldWidth/4.0f, edgeTopLeftY+worldHeight/2+7.6f); 
   d1t.setStatic(true);
-  d1t.setFill(153,102,51);
+  d1t.setFill(128, 128, 128);
+  d1t.setNoStroke();
   world.add(d1t); 
 
 
   /* Building T*/
-  b9                  = new FBox(2.0, 1.0);
-  b9.setPosition(edgeTopLeftX+worldWidth/4.0+3, edgeTopLeftY+worldHeight/2+6); 
+  b9                  = new FBox(2.0f, 1.0f);
+  b9.setPosition(edgeTopLeftX+worldWidth/4.0f+3, edgeTopLeftY+worldHeight/2+6); 
   b9.setStatic(true);
   b9.setFill(0, 136, 204);
+  b9.setNoStroke();
   world.add(b9);
 
-  b10                  = new FBox(2.0, 1.0);
-  b10.setPosition(edgeTopLeftX+worldWidth/4.0+5, edgeTopLeftY+worldHeight/2+6); 
+  b10                  = new FBox(2.0f, 1.0f);
+  b10.setPosition(edgeTopLeftX+worldWidth/4.0f+5, edgeTopLeftY+worldHeight/2+6); 
   b10.setStatic(true);
   b10.setFill(179, 230, 255);
+  b10.setNoStroke();
   world.add(b10);
   
-  b11                  = new FBox(1.0, 1.8);
-  b11.setPosition(edgeTopLeftX+worldWidth/4.0+5.5, edgeTopLeftY+worldHeight/2+7.4); 
+  b11                  = new FBox(1.0f, 1.8f);
+  b11.setPosition(edgeTopLeftX+worldWidth/4.0f+5.5f, edgeTopLeftY+worldHeight/2+7.4f); 
   b11.setStatic(true);
   b11.setFill(0, 51, 77);
+  b11.setNoStroke();
   world.add(b11); 
   
 
 
   /* Building 2*/
-  b5                  = new FBox(1.0, 2.0);
-  b5.setPosition(edgeTopLeftX+worldWidth/4.0+3, edgeTopLeftY+worldHeight/2-6); 
+  b5                  = new FBox(1.0f, 2.0f);
+  b5.setPosition(edgeTopLeftX+worldWidth/4.0f+3, edgeTopLeftY+worldHeight/2-6); 
   b5.setStatic(true);
   b5.setFill(102, 204, 255);
+  b5.setNoStroke();
   world.add(b5);
   
-  b6                  = new FBox(1.0, 2.0);
-  b6.setPosition(edgeTopLeftX+worldWidth/4.0+3, edgeTopLeftY+worldHeight/2-4); 
+  b6                  = new FBox(1.0f, 2.0f);
+  b6.setPosition(edgeTopLeftX+worldWidth/4.0f+3, edgeTopLeftY+worldHeight/2-4); 
   b6.setStatic(true);
   b6.setFill(0, 136, 204);
+  b6.setNoStroke();
   world.add(b6);
 
-  b7                  = new FBox(1.0, 2.0);
-  b7.setPosition(edgeTopLeftX+worldWidth/4.0+3, edgeTopLeftY+worldHeight/2); 
+  b7                  = new FBox(1.0f, 2.0f);
+  b7.setPosition(edgeTopLeftX+worldWidth/4.0f+3, edgeTopLeftY+worldHeight/2); 
   b7.setStatic(true);
   b7.setFill(179, 230, 255);
+  b7.setNoStroke();
   world.add(b7);
   
-  b8                  = new FBox(1.0, 2.0);
-  b8.setPosition(edgeTopLeftX+worldWidth/4.0+3, edgeTopLeftY+worldHeight/2+2); 
+  b8                  = new FBox(1.0f, 2.0f);
+  b8.setPosition(edgeTopLeftX+worldWidth/4.0f+3, edgeTopLeftY+worldHeight/2+2); 
   b8.setStatic(true);
   b8.setFill(0, 51, 77);
+  b8.setNoStroke();
   world.add(b8);  
     
-  /*cr1                  = new FBox(2.0, 1.0);
-  cr1.setPosition(edgeTopLeftX+worldWidth/4.0+5, edgeTopLeftY+worldHeight/2-4); 
-  cr1.setStatic(true);
-  cr1.setFill(255, 153, 51);
-  world.add(cr1);  
   
-  /* creation of Car 1*/
+  /* creation of Car 1*/ 
   cr1                   = new FPoly(); 
-  cr1.vertex(-1, 0.25);
-  cr1.vertex(-0.5, 0.5);
-  cr1.vertex( 1.0, 0.5);
-  cr1.vertex( 1.0, -0.5);
-  cr1.vertex(-0.5, -0.5);
-  cr1.vertex(-1, -0.25);
-  cr1.setPosition(edgeTopLeftX+worldWidth/4.0+7, edgeTopLeftY+worldHeight/2-4); 
+  cr1.vertex(-1, 0.25f);
+  cr1.vertex(-0.5f, 0.5f);
+  cr1.vertex( 1.0f, 0.5f);
+  cr1.vertex( 1.0f, -0.5f);
+  cr1.vertex(-0.5f, -0.5f);
+  cr1.vertex(-1, -0.25f);
+  cr1.setPosition(edgeTopLeftX+worldWidth/4.0f+7, edgeTopLeftY+worldHeight/2-4); 
   cr1.setStatic(true);
   cr1.setFill(255, 153, 51);
+  cr1.setNoStroke();
   world.add(cr1);   
-    
+
     
   /* creation of Car 2*/
   cr2                   = new FPoly(); 
-  cr2.vertex(-1, 0.25);
-  cr2.vertex(-0.5, 0.5);
-  cr2.vertex( 1.0, 0.5);
-  cr2.vertex( 1.0, -0.5);
-  cr2.vertex(-0.5, -0.5);
-  cr2.vertex(-1, -0.25);
-  cr2.setPosition(edgeTopLeftX+worldWidth/4.0+7, edgeTopLeftY+worldHeight/2-2.5); 
+  cr2.vertex(-1, 0.25f);
+  cr2.vertex(-0.5f, 0.5f);
+  cr2.vertex( 1.0f, 0.5f);
+  cr2.vertex( 1.0f, -0.5f);
+  cr2.vertex(-0.5f, -0.5f);
+  cr2.vertex(-1, -0.25f);
+  cr2.setPosition(edgeTopLeftX+worldWidth/4.0f+7, edgeTopLeftY+worldHeight/2-2.5f); 
   cr2.setStatic(true);
   cr2.setFill(0, 153, 153);
+  cr2.setNoStroke();
   world.add(cr2);   
   
   /* creation of Car 3*/
   cr3                   = new FPoly(); 
-  cr3.vertex(-1, 0.25);
-  cr3.vertex(-0.5, 0.5);
-  cr3.vertex( 1.0, 0.5);
-  cr3.vertex( 1.0, -0.5);
-  cr3.vertex(-0.5, -0.5);
-  cr3.vertex(-1, -0.25);
-  cr3.setPosition(edgeTopLeftX+worldWidth/4.0+11, edgeTopLeftY+worldHeight/2-1); 
+  cr3.vertex(-1, 0.25f);
+  cr3.vertex(-0.5f, 0.5f);
+  cr3.vertex( 1.0f, 0.5f);
+  cr3.vertex( 1.0f, -0.5f);
+  cr3.vertex(-0.5f, -0.5f);
+  cr3.vertex(-1, -0.25f);
+  cr3.setPosition(edgeTopLeftX+worldWidth/4.0f+11, edgeTopLeftY+worldHeight/2-1); 
   cr3.setStatic(true);
   cr3.setFill(204, 153, 255);
+  cr3.setNoStroke();
   world.add(cr3);   
   
   /* creation of Car 4*/
   cr4                   = new FPoly(); 
-  cr4.vertex(-1, 0.25);
-  cr4.vertex(-0.5, 0.5);
-  cr4.vertex( 1.0, 0.5);
-  cr4.vertex( 1.0, -0.5);
-  cr4.vertex(-0.5, -0.5);
-  cr4.vertex(-1, -0.25);
-  cr4.setPosition(edgeTopLeftX+worldWidth/4.0+7, edgeTopLeftY+worldHeight/2+0.5); 
+  cr4.vertex(-1, 0.25f);
+  cr4.vertex(-0.5f, 0.5f);
+  cr4.vertex( 1.0f, 0.5f);
+  cr4.vertex( 1.0f, -0.5f);
+  cr4.vertex(-0.5f, -0.5f);
+  cr4.vertex(-1, -0.25f);
+  cr4.setPosition(edgeTopLeftX+worldWidth/4.0f+7, edgeTopLeftY+worldHeight/2+0.5f); 
   cr4.setStatic(true);
-  cr4.setFill(102, 153, 153);
+  cr4.setFill(153, 0, 102);
+  cr4.setNoStroke();
   world.add(cr4);   
 
  /* creation of Fire Hydrant */
   f1                   = new FPoly(); 
-  f1.vertex(-0.75, 0.5);
-  f1.vertex( 0.75, 0.5);
-  f1.vertex( 0, -0.5);
-  f1.setPosition(edgeTopLeftX+worldWidth/4.0+10, edgeTopLeftY+worldHeight/2+5); 
+  f1.vertex(-0.75f, 0.5f);
+  f1.vertex( 0.75f, 0.5f);
+  f1.vertex( 0, -0.5f);
+  f1.setPosition(edgeTopLeftX+worldWidth/4.0f+10, edgeTopLeftY+worldHeight/2+5); 
   f1.setStatic(true);
   f1.setFill(255, 71, 26);
+  f1.setNoStroke();
   world.add(f1);
   
 
   /* creation of Tree 3 */
   tt3                   = new FPoly(); 
-  tt3.vertex(-0.5, 1.0);
-  tt3.vertex( 0.5, 1.0);
+  tt3.vertex(-0.5f, 1.0f);
+  tt3.vertex( 0.5f, 1.0f);
   tt3.vertex( 0, 0);
-  tt3.setPosition(edgeTopLeftX+worldWidth/4.0+11.8, edgeTopLeftY+worldHeight/2+4); 
+  tt3.setPosition(edgeTopLeftX+worldWidth/4.0f+11.8f, edgeTopLeftY+worldHeight/2+4); 
   tt3.setStatic(true);
   tt3.setFill(96, 128, 0);
+  tt3.setNoStroke();
   world.add(tt3); 
 
-  t3                  = new FBox(0.4, 0.8);
-  t3.setPosition(edgeTopLeftX+worldWidth/4.0+11.8, edgeTopLeftY+worldHeight/2+5.4); 
+  t3                  = new FBox(0.4f, 0.8f);
+  t3.setPosition(edgeTopLeftX+worldWidth/4.0f+11.8f, edgeTopLeftY+worldHeight/2+5.4f); 
   t3.setStatic(true);
   t3.setFill(204, 163, 0);
+  t3.setNoStroke();
   world.add(t3);   
   
    /* creation of Tree 5*/
   tt5                   = new FPoly(); 
-  tt5.vertex(-0.5, 1.0);
-  tt5.vertex( 0.5, 1.0);
+  tt5.vertex(-0.5f, 1.0f);
+  tt5.vertex( 0.5f, 1.0f);
   tt5.vertex( 0, 0);
-  tt5.setPosition(edgeTopLeftX+worldWidth/4.0+13, edgeTopLeftY+worldHeight/2+5); 
+  tt5.setPosition(edgeTopLeftX+worldWidth/4.0f+13, edgeTopLeftY+worldHeight/2+5); 
   tt5.setStatic(true);
   tt5.setFill(0, 204, 102);
+  tt5.setNoStroke();
   world.add(tt5); 
 
-  t5                  = new FBox(0.4, 0.8);
-  t5.setPosition(edgeTopLeftX+worldWidth/4.0+13, edgeTopLeftY+worldHeight/2+6.4); 
+  t5                  = new FBox(0.4f, 0.8f);
+  t5.setPosition(edgeTopLeftX+worldWidth/4.0f+13, edgeTopLeftY+worldHeight/2+6.4f); 
   t5.setStatic(true);
   t5.setFill(102,68,0);
+  t5.setNoStroke();
   world.add(t5); 
   
    /* creation of Tree 6*/
   tt6                   = new FPoly(); 
-  tt6.vertex(-0.5, 1.0);
-  tt6.vertex( 0.5, 1.0);
+  tt6.vertex(-0.5f, 1.0f);
+  tt6.vertex( 0.5f, 1.0f);
   tt6.vertex( 0, 0);
-  tt6.setPosition(edgeTopLeftX+worldWidth/4.0+11, edgeTopLeftY+worldHeight/2+6); 
+  tt6.setPosition(edgeTopLeftX+worldWidth/4.0f+11, edgeTopLeftY+worldHeight/2+6); 
   tt6.setStatic(true);
   tt6.setFill(0, 204, 102);
+  tt6.setNoStroke();
   world.add(tt6); 
 
-  t6                  = new FBox(0.4, 0.8);
-  t6.setPosition(edgeTopLeftX+worldWidth/4.0+11, edgeTopLeftY+worldHeight/2+7.4); 
+  t6                  = new FBox(0.4f, 0.8f);
+  t6.setPosition(edgeTopLeftX+worldWidth/4.0f+11, edgeTopLeftY+worldHeight/2+7.4f); 
   t6.setStatic(true);
   t6.setFill(102,68,0);
+  t6.setNoStroke();
   world.add(t6); 
   
   /* creation of Car 5*/
   cr5                   = new FPoly(); 
-  cr5.vertex(-1, 0.25);
-  cr5.vertex(-0.5, 0.5);
-  cr5.vertex( 1.0, 0.5);
-  cr5.vertex( 1.0, -0.5);
-  cr5.vertex(-0.5, -0.5);
-  cr5.vertex(-1, -0.25);
-  cr5.setPosition(edgeTopLeftX+worldWidth/4.0+10, edgeTopLeftY+worldHeight/2-6); 
+  cr5.vertex(-1, 0.25f);
+  cr5.vertex(-0.5f, 0.5f);
+  cr5.vertex( 1.0f, 0.5f);
+  cr5.vertex( 1.0f, -0.5f);
+  cr5.vertex(-0.5f, -0.5f);
+  cr5.vertex(-1, -0.25f);
+  cr5.setPosition(edgeTopLeftX+worldWidth/4.0f+10, edgeTopLeftY+worldHeight/2-6); 
   cr5.setStatic(true);
-  cr5.setFill(255, 77, 148);
+  cr5.setFill(230, 230, 0);
+  cr5.setNoStroke();
   world.add(cr5);   
   
   /* creation of Car 6*/
   cr6                   = new FPoly(); 
-  cr6.vertex(-1, 0.25);
-  cr6.vertex(-0.5, 0.5);
-  cr6.vertex( 1.0, 0.5);
-  cr6.vertex( 1.0, -0.5);
-  cr6.vertex(-0.5, -0.5);
-  cr6.vertex(-1, -0.25);
-  cr6.setPosition(edgeTopLeftX+worldWidth/4.0+12.5, edgeTopLeftY+worldHeight/2-6); 
+  cr6.vertex(-1, 0.25f);
+  cr6.vertex(-0.5f, 0.5f);
+  cr6.vertex( 1.0f, 0.5f);
+  cr6.vertex( 1.0f, -0.5f);
+  cr6.vertex(-0.5f, -0.5f);
+  cr6.vertex(-1, -0.25f);
+  cr6.setPosition(edgeTopLeftX+worldWidth/4.0f+12.5f, edgeTopLeftY+worldHeight/2-6); 
   cr6.setStatic(true);
-  cr6.setFill(230, 230, 0);
+  cr6.setFill(255, 102, 102);
+  cr6.setNoStroke();
   world.add(cr6);     
 
   /* creation of Car 7*/
   cr7                   = new FPoly(); 
-  cr7.vertex(-1, 0.25);
-  cr7.vertex(-0.5, 0.5);
-  cr7.vertex( 1.0, 0.5);
-  cr7.vertex( 1.0, -0.5);
-  cr7.vertex(-0.5, -0.5);
-  cr7.vertex(-1, -0.25);
-  cr7.setPosition(edgeTopLeftX+worldWidth/4.0+15, edgeTopLeftY+worldHeight/2-6); 
+  cr7.vertex(-1, 0.25f);
+  cr7.vertex(-0.5f, 0.5f);
+  cr7.vertex( 1.0f, 0.5f);
+  cr7.vertex( 1.0f, -0.5f);
+  cr7.vertex(-0.5f, -0.5f);
+  cr7.vertex(-1, -0.25f);
+  cr7.setPosition(edgeTopLeftX+worldWidth/4.0f+15, edgeTopLeftY+worldHeight/2-6); 
   cr7.setStatic(true);
-  cr7.setFill(153, 230, 255);
+  cr7.setFill(255, 214, 51);
+  cr7.setNoStroke();
   world.add(cr7);    
   
   
   /* Building 3 */
-  b12                  = new FBox(1.5, 2.0);
-  b12.setPosition(edgeTopLeftX+worldWidth/4.0+16, edgeTopLeftY+worldHeight/2-2); 
+  b12                  = new FBox(1.5f, 2.0f);
+  b12.setPosition(edgeTopLeftX+worldWidth/4.0f+16, edgeTopLeftY+worldHeight/2-2); 
   b12.setStatic(true);
-  b12.setFill(255, 153, 102);
+  b12.setFill(102, 102, 204);
+  b12.setNoStroke();
   world.add(b12);
   
-  b13                  = new FBox(1.5, 2.0);
-  b13.setPosition(edgeTopLeftX+worldWidth/4.0+16, edgeTopLeftY+worldHeight/2); 
+  b13                  = new FBox(1.5f, 2.0f);
+  b13.setPosition(edgeTopLeftX+worldWidth/4.0f+16, edgeTopLeftY+worldHeight/2); 
   b13.setStatic(true);
-  b13.setFill(255, 195, 77);
+  b13.setFill(179, 179, 230);
+  b13.setNoStroke();
   world.add(b13);
   
-  b14                  = new FBox(1.5, 2.0);
-  b14.setPosition(edgeTopLeftX+worldWidth/4.0+16, edgeTopLeftY+worldHeight/2+2); 
+  b14                  = new FBox(1.5f, 2.0f);
+  b14.setPosition(edgeTopLeftX+worldWidth/4.0f+16, edgeTopLeftY+worldHeight/2+2); 
   b14.setStatic(true);
-  b14.setFill(255, 112, 77);
+  b14.setFill(92, 92, 138);
+  b14.setNoStroke();
   world.add(b14);
   
-  b15                  = new FBox(1.5, 2.0);
-  b15.setPosition(edgeTopLeftX+worldWidth/4.0+16, edgeTopLeftY+worldHeight/2+4); 
+  b15                  = new FBox(1.5f, 2.0f);
+  b15.setPosition(edgeTopLeftX+worldWidth/4.0f+16, edgeTopLeftY+worldHeight/2+4); 
   b15.setStatic(true);
-  b15.setFill(204, 82, 0);
+  b15.setFill(194, 194, 214);
+  b15.setNoStroke();
   world.add(b15);
   
-  b20                  = new FBox(1.5, 2.0);
-  b20.setPosition(edgeTopLeftX+worldWidth/4.0+16, edgeTopLeftY+worldHeight/2+6); 
+  b20                  = new FBox(1.5f, 2.0f);
+  b20.setPosition(edgeTopLeftX+worldWidth/4.0f+16, edgeTopLeftY+worldHeight/2+6); 
   b20.setStatic(true);
-  b20.setFill(204, 82, 0);
+  b20.setFill(61, 61, 92);
+  b20.setNoStroke();
   world.add(b20);
   
   
   /* Building 4 */
-  b16                  = new FBox(1.5, 2.0);
-  b16.setPosition(edgeTopLeftX+worldWidth/4.0+20, edgeTopLeftY+worldHeight/2-2); 
+  b16                  = new FBox(1.5f, 2.0f);
+  b16.setPosition(edgeTopLeftX+worldWidth/4.0f+20, edgeTopLeftY+worldHeight/2-2); 
   b16.setStatic(true);
-  b16.setFill(255, 153, 102);
+  b16.setFill(102, 163, 255);
+  b16.setNoStroke();
   world.add(b16);
   
-  b17                  = new FBox(1.5, 2.0);
-  b17.setPosition(edgeTopLeftX+worldWidth/4.0+20, edgeTopLeftY+worldHeight/2); 
+  b17                  = new FBox(1.5f, 2.0f);
+  b17.setPosition(edgeTopLeftX+worldWidth/4.0f+20, edgeTopLeftY+worldHeight/2); 
   b17.setStatic(true);
-  b17.setFill(255, 195, 77);
+  b17.setFill(117, 117, 163);
+  b17.setNoStroke();
   world.add(b17);
   
-  b18                  = new FBox(1.5, 2.0);
-  b18.setPosition(edgeTopLeftX+worldWidth/4.0+20, edgeTopLeftY+worldHeight/2+2); 
+  b18                  = new FBox(1.5f, 2.0f);
+  b18.setPosition(edgeTopLeftX+worldWidth/4.0f+20, edgeTopLeftY+worldHeight/2+2); 
   b18.setStatic(true);
-  b18.setFill(255, 112, 77);
+  b18.setFill(152, 178, 230);
+  b18.setNoStroke();
   world.add(b18);
   
-  b19                  = new FBox(1.5, 2.0);
-  b19.setPosition(edgeTopLeftX+worldWidth/4.0+20, edgeTopLeftY+worldHeight/2+4); 
+  b19                  = new FBox(1.5f, 2.0f);
+  b19.setPosition(edgeTopLeftX+worldWidth/4.0f+20, edgeTopLeftY+worldHeight/2+4); 
   b19.setStatic(true);
-  b19.setFill(204, 82, 0);
+  b19.setFill(50, 102, 205);
+  b19.setNoStroke();
   world.add(b19);
   
   
     
   /* dog */
   d2e1                   = new FPoly(); 
-  d2e1.vertex(-0.8, 0);
-  d2e1.vertex( 0, 0.6);
-  d2e1.vertex( 0, -0.6);
-  d2e1.setPosition(edgeTopLeftX+worldWidth/4.0+19.8, edgeTopLeftY+worldHeight/2-7); 
+  d2e1.vertex(-0.8f, 0);
+  d2e1.vertex( 0, 0.6f);
+  d2e1.vertex( 0, -0.6f);
+  d2e1.setPosition(edgeTopLeftX+worldWidth/4.0f+19.8f, edgeTopLeftY+worldHeight/2-7); 
   d2e1.setStatic(true);
-  d2e1.setFill(0,179,0);
+  d2e1.setFill(153, 115, 0);
+  d2e1.setNoStroke();
   world.add(d2e1); 
 
   d2                   = new FPoly(); 
-  d2.vertex(-0.8, 0);
-  d2.vertex( 0, 0.5);
-  d2.vertex( 0, -0.5);
-  d2.setPosition(edgeTopLeftX+worldWidth/4.0+19.4, edgeTopLeftY+worldHeight/2-7); 
+  d2.vertex(-0.8f, 0);
+  d2.vertex( 0, 0.5f);
+  d2.vertex( 0, -0.5f);
+  d2.setPosition(edgeTopLeftX+worldWidth/4.0f+19.4f, edgeTopLeftY+worldHeight/2-7); 
   d2.setStatic(true);
-  d2.setFill(0,179,0);
+  d2.setFill(204, 153, 0);
+  d2.setNoStroke();
   world.add(d2);
 
-  d2b                  = new FBox(1.2, 0.8);
-  d2b.setPosition(edgeTopLeftX+worldWidth/4.0+20, edgeTopLeftY+worldHeight/2-7); 
+  d2b                  = new FBox(1.2f, 0.8f);
+  d2b.setPosition(edgeTopLeftX+worldWidth/4.0f+20, edgeTopLeftY+worldHeight/2-7); 
   d2b.setStatic(true);
-  d2b.setFill(153,102,51);
+  d2b.setFill(102, 77, 0);
+  d2b.setNoStroke();
   world.add(d2b); 
   
-  d2t                  = new FBox(0.5, 0.3);
-  d2t.setPosition(edgeTopLeftX+worldWidth/4.0+20.8, edgeTopLeftY+worldHeight/2-7); 
+  d2t                  = new FBox(0.5f, 0.3f);
+  d2t.setPosition(edgeTopLeftX+worldWidth/4.0f+20.8f, edgeTopLeftY+worldHeight/2-7); 
   d2t.setStatic(true);
-  d2t.setFill(153,102,51);
+  d2t.setFill(153, 115, 0);
+  d2t.setNoStroke();
   world.add(d2t); 
   
     /* creation of Owner*/
-  o                   = new FCircle(1.0);
-  o.setPosition(edgeTopLeftX+worldWidth/4.0+18.2, edgeTopLeftY+worldHeight/2+5.5); 
+  o                   = new FCircle(1.0f);
+  o.setPosition(edgeTopLeftX+worldWidth/4.0f+18.2f, edgeTopLeftY+worldHeight/2+5.5f); 
   o.setStatic(true);
-  o.setFill(0, 204, 102);
+  o.setFill(179, 107, 0);
+  o.setNoStroke();
   world.add(o);
   
   ob                   = new FPoly(); 
-  ob.vertex(-0.5, 1.0);
-  ob.vertex( 0.5, 1.0);
+  ob.vertex(-0.5f, 1.0f);
+  ob.vertex( 0.5f, 1.0f);
   ob.vertex( 0, 0);
-  ob.setPosition(edgeTopLeftX+worldWidth/4.0+18.2, edgeTopLeftY+worldHeight/2+6); 
+  ob.setPosition(edgeTopLeftX+worldWidth/4.0f+18.2f, edgeTopLeftY+worldHeight/2+6); 
   ob.setStatic(true);
-  ob.setFill(0, 204, 102);
+  ob.setFill(0, 230, 172);
+  ob.setNoStroke();
   world.add(ob); 
 
-  ol                  = new FBox(0.4, 0.8);
-  ol.setPosition(edgeTopLeftX+worldWidth/4.0+18.2, edgeTopLeftY+worldHeight/2+7.4); 
+  ol                  = new FBox(0.4f, 0.8f);
+  ol.setPosition(edgeTopLeftX+worldWidth/4.0f+18.2f, edgeTopLeftY+worldHeight/2+7.4f); 
   ol.setStatic(true);
-  ol.setFill(102,68,0);
+  ol.setFill(179, 107, 0);
+  ol.setNoStroke();
   world.add(ol); 
     
-    
+
     
   /* Haptic Tool Initialization */
   s                   = new HVirtualCoupling((1)); 
-  s.h_avatar.setDensity(4);
-  s.h_avatar.setRotation(0);
+  s.h_avatar.setDensity(4);  
   s.init(world, edgeTopLeftX+worldWidth/2, edgeTopLeftY+2); 
  
   
@@ -667,19 +706,69 @@ void setup(){
 
 
 /* draw section ********************************************************************************************************/
-void draw(){
+public void draw(){
   /* put graphical code here, runs repeatedly at defined framerate in setup, else default at 60fps: */
   if(renderingForce == false){
     background(255);
     textFont(f, 20);
     
      if(gameStart){
-      fill(26, 26, 0);
+      fill(92, 0, 153);
       textAlign(LEFT);
-      text("Buddy is lost, get him to his owner!", (width/2)-550, (height/2)+180);
+      text("Buddy is lost, help him reach his owner!", (width/2)-550, (height/2)+180);
       text("Note: Buddy is scared of other dogs,", (width/2)-550, (height/2)+200);
       text("and be careful of the cars!", (width/2)-550, (height/2)+220);
-     }
+      
+      /*labels*/
+      textFont(f, 12);
+      fill(0, 0, 0);
+      textAlign(CENTER);
+      text("Walter", (width/2)-500, (height/2)-222);
+      text("Gage", (width/2)-500, (height/2)-212);
+      text("Residence", (width/2)-500, (height/2)-202);
+      
+      textFont(f, 16);
+      text("<-- Guide him to Owner", (width/2)+100, (height/2)-300);
+       
+      textFont(f, 12); 
+      text("UBC Admin Office", (width/2)-150, (height/2)+300);
+      
+      text("Car", (width/2)-10, (height/2)-185);
+      text("Car", (width/2)-10, (height/2)-60);
+      text("Car", (width/2)-10, (height/2)+60);
+      text("Car", (width/2)+150, (height/2)+0);
+      text("Car", (width/2)+110, (height/2)-200);
+      text("Car", (width/2)+210, (height/2)-200);
+      text("Car", (width/2)+310, (height/2)-200);
+      
+      textFont(f, 20);
+      text("Owner", (width/2)+480, (height/2)+300);
+      
+      textFont(f, 12);
+      text("Tree", (width/2)-300, (height/2)-155);
+      text("Tree", (width/2)-380, (height/2)-35);
+      text("Tree", (width/2)-300, (height/2)+85);
+      text("Trees", (width/2)+180, (height/2)+300);
+      
+      text("Marine", (width/2)-130, (height/2)-270);
+      text("Drive", (width/2)-130, (height/2)-260);
+      
+      text("Brock", (width/2)-180, (height/2)+140);
+      text("Commons", (width/2)-180, (height/2)+150);
+      
+      text("Fire", (width/2)+100, (height/2)+235);
+      text("Hydrant", (width/2)+100, (height/2)+245);
+     
+      text("Salish", (width/2)+340, (height/2)+300);
+      text("Drive", (width/2)+340, (height/2)+310);
+ 
+      text("Camosun", (width/2)+500, (height/2)+220);
+      text("Street", (width/2)+500, (height/2)+230);
+      
+      text("Dog", (width/2)-340, (height/2)+300);
+      text("Dog", (width/2)+500, (height/2)-245);
+ 
+    }
     
     else if(gameStart == false){
       b1.setDrawable(false);
@@ -731,11 +820,11 @@ void draw(){
       d2b.setDrawable(false);
       d2t.setDrawable(false);
       textAlign(CENTER);
-      textFont(f, 36);
-      fill(255, 51, 51);
-      text("Congrats!", width/2, height/2);
-      textFont(f, 24);
-      fill(64, 0, 128);
+      textFont(f, 72);
+      fill(255, 77, 77);
+      text("YAYYY!", width/2, height/2);
+      textFont(f, 48);
+      fill(77, 0, 102);
       text("Buddy made it home!", width/2, (height/2)+100);
     }  
     
@@ -773,11 +862,11 @@ class SimulationThread implements Runnable{
     torques.set(widgetOne.set_device_torques(fEE.array()));
     widgetOne.device_write_torques();
   
-  if(s.h_avatar.isTouchingBody(o)){
+    if(s.h_avatar.isTouchingBody(o)){
       gameStart = false;
       s.h_avatar.setSensor(true);
     }
-  
+    
   
     world.step(1.0f/1000.0f);
   
