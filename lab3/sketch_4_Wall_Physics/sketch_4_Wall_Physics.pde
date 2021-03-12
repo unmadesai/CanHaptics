@@ -163,12 +163,12 @@ void setup(){
   world.add(wallPortal12);
   
   //hide wall for angry  
-  //wallHidePortal1                   = new FBox(14, worldHeight/2);
-  //wallHidePortal1.setPosition(1, 6);
-  //wallHidePortal1.setStatic(true);
-  //wallHidePortal1.setSensor(true);
-  //wallHidePortal1.setFill(0,0,0);
-  //world.add(wallHidePortal1);
+  wallHidePortal1                   = new FBox(14, worldHeight/2);
+  wallHidePortal1.setPosition(1, 6);
+  wallHidePortal1.setStatic(true);
+  wallHidePortal1.setSensor(true);
+  wallHidePortal1.setFill(0,0,0);
+  world.add(wallHidePortal1);
   
   //excited
   wallPortal5                   = new FBox(15, 6);
@@ -191,21 +191,13 @@ void setup(){
   world.add(wallPortal2);
 
 
-  //wall4                   = new FBox(15, worldHeight/6);
-  //wall4.setPosition(16, 22);
-  //wall4.setStatic(true);
-  //wall4.setSensor(true);
-  ////wall4.setFill(0,134,255);
-  //wall4.setNoStroke();
-  //world.add(wall4);
- 
   //hides bottom wall
-  //wallHidePortal5                   = new FBox(15, 10);
-  //wallHidePortal5.setPosition(18, 22);
-  //wallHidePortal5.setStatic(true);
-  //wallHidePortal5.setSensor(true);
-  //wallHidePortal5.setFill(0,0,0);
-  //world.add(wallHidePortal5);
+  wallHidePortal5                   = new FBox(15, 10);
+  wallHidePortal5.setPosition(18, 22);
+  wallHidePortal5.setStatic(true);
+  wallHidePortal5.setSensor(true);
+  wallHidePortal5.setFill(0,0,0);
+  world.add(wallHidePortal5);
   
   //sluggish
   wallPortal4                  = new FBox(7, worldHeight/2);
@@ -243,9 +235,6 @@ void setup(){
   haplyAvatar.resize((int)(hAPI_Fisica.worldToScreen(2)), (int)(hAPI_Fisica.worldToScreen(2)));
   s.h_avatar.attachImage(haplyAvatar); 
 
-  //pac2 = loadImage("../img/pac2.png"); 
-  //pac2.resize((int)(hAPI_Fisica.worldToScreen(1)), (int)(hAPI_Fisica.worldToScreen(1)));
-  //wallPortal4.attachImage(pac2); 
 
   /* world conditions setup */
   world.setGravity((0.0), (0.0)); //1000 cm/(s^2)
@@ -321,15 +310,6 @@ class SimulationThread implements Runnable{
     fEE.set(-s.getVirtualCouplingForceX(), s.getVirtualCouplingForceY());
     fEE.div(100000); //dynes to newtons
     
-    //if (s.h_avatar.isTouchingBody(wallPortal11) || s.h_avatar.isTouchingBody(wallPortal12)){
-    //  if(s.h_avatar.isTouchingBody(wallPortal11)) {
-    //    s.h_avatar.adjustPosition(3,0);
-    //  }
-    //  else
-    //  {
-    //    s.h_avatar.adjustPosition(-3,0);
-    //  }
-    //}
     
     //angry
     if (s.h_avatar.isTouchingBody(wallPortal11)){   
@@ -340,11 +320,7 @@ class SimulationThread implements Runnable{
       s.h_avatar.adjustPosition(-4,0);    
     }
     
-    //excited?
-    //if (s.h_avatar.isTouchingBody(wallPortal5)){   
-    //  s.h_avatar.setVelocity(20,0);
-    //  s.h_avatar.setDamping(500);
-    //}
+
     
     //nervous/excited
     if (s.h_avatar.isTouchingBody(wallPortal5)){   
@@ -398,8 +374,8 @@ class SimulationThread implements Runnable{
     
     
     if(s.h_avatar.isTouchingBody(wallHidePortal1) || s.h_avatar.isTouchingBody(wallHidePortal5) || s.h_avatar.isTouchingBody(wallPortal4) || s.h_avatar.isTouchingBody(wallPortal2) || s.h_avatar.isTouchingBody(wallPortal3)) {
-      //s.h_avatar.dettachImage();
-      //s.h_avatar.setNoFill();
+      s.h_avatar.dettachImage();
+      s.h_avatar.setNoFill();
     }
     else
     {
